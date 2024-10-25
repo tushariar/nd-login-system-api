@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import express from "express";
 import logger from "./config/_logger";
 import { setupSwagger } from "./config/_swagger";
+import enableCrons from "./crons";
 import validateJSON from "./middleware/app/validateJSON";
 import appRouter from "./routers/_appRouter";
 
@@ -27,4 +28,6 @@ app.use("/", appRouter);
 app.listen(process.env.PORT, () => {
   logger.info(`Server is running on port ${process.env.PORT} 🚀`);
   logger.info(`MODE: ${process.env.NODE_ENV} ✨`);
+
+  enableCrons();
 });
