@@ -14,7 +14,7 @@ export const peopleSchema = z.object({
       required_error: "Last name is required",
       invalid_type_error: "Last name must be a string",
     })
-    .min(1, "First name is required"),
+    .min(1, "Last name is required"),
   email: z
     .string({
       required_error: "Email is required",
