@@ -4,6 +4,7 @@ import express from "express";
 import logger from "./config/_logger";
 import { setupSwagger } from "./config/_swagger";
 import validateJSON from "./middleware/app/validateJSON";
+import appRouter from "./routers/_appRouter";
 
 // Load environment variables
 dotenv.config();
@@ -19,6 +20,8 @@ app.use(validateJSON);
 // Setup swagger
 setupSwagger(app);
 
+// App Router
+app.use("/", appRouter);
 
 // Start the server
 app.listen(process.env.PORT, () => {
