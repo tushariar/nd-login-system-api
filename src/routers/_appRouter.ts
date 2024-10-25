@@ -5,8 +5,7 @@ import {
   STATUS_NOT_FOUND,
   STATUS_OK,
 } from "../utilities/response";
-import authRouter from "./auth/authRouter";
-import peopleRouter from "./peopleRouter";
+import authRouter from "./authRouter";
 import profileRouter from "./profileRouter";
 
 const appRouter = Router();
@@ -31,9 +30,6 @@ appRouter.get("/", (req: Request, res: Response) => {
 
 // Auth Router: Authentication
 appRouter.use("/auth", authRouter);
-
-// People Router: Manage People
-appRouter.use("/people", peopleRouter);
 
 // People Router: User Profile
 appRouter.use("/profile", profileRouter);

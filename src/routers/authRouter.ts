@@ -1,16 +1,64 @@
 import { Router } from "express";
-import controller from "../../controllers/auth";
-import { peopleAuth } from "../../middleware/auth/peopleAuth";
+import controller from "../controllers/auth";
+import { peopleAuth } from "../middleware/auth/peopleAuth";
 
-const authPeopleRouter = Router();
+const authRouter = Router();
+
+/**
+ * @swagger
+ * /auth/signup:
+ *   post:
+ *     tags:
+ *      - Auth
+ *     summary: Create a new user
+ *     requestBody:
+ *       required: true
+ *       content:
+ *        application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               firstname:
+ *                 type: string
+ *                 example: "Tahsin"
+ *               lastname:
+ *                 type: string
+ *                 example: "Ahmed"
+ *               email:
+ *                 type: string
+ *                 example: "taahzino@gmail.com"
+ *               phone:
+ *                 type: string
+ *                 example: "8801812345678"
+ *               password:
+ *                 type: string
+ *                 example: "password123"
+ *             required:
+ *               - firstname
+ *               - lastname
+ *               - email
+ *               - phone
+ *               - password
+ *     responses:
+ *       201:
+ *         description: User created successfully
+ *       400:
+ *         description: Bad Request
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Forbidden
+ */
+
+authRouter.post("/signup", controller.signup);
 
 /**
  * @swagger
  *
- * /auth/people/login:
+ * /auth/login:
  *   post:
  *     tags:
- *      - Auth/People
+ *      - Auth
  *     summary: Login user
  *     produces:
  *       - application/json
@@ -38,14 +86,14 @@ const authPeopleRouter = Router();
  *        description: Invalid email or password
  */
 
-authPeopleRouter.post("/login", controller.login);
+authRouter.post("/login", controller.login);
 
 /**
  * @swagger
- * /auth/people/logout:
+ * /auth/logout:
  *   post:
  *     tags:
- *       - Auth/People
+ *       - Auth
  *     summary: Logout user
  *     produces:
  *       - application/json
@@ -56,14 +104,14 @@ authPeopleRouter.post("/login", controller.login);
  *         description: Unauthorized
  */
 
-authPeopleRouter.post("/logout", peopleAuth, controller.logout);
+authRouter.post("/logout", peopleAuth, controller.logout);
 
 /**
  * @swagger
- * /auth/people/reset/request:
+ * /auth/reset/request:
  *  post:
  *      tags:
- *       - Auth/People
+ *       - Auth
  *      summary: Request password reset
  *      produces:
  *          - application/json
@@ -86,14 +134,14 @@ authPeopleRouter.post("/logout", peopleAuth, controller.logout);
  *        description: Invalid email
  */
 
-authPeopleRouter.post("/reset/request", controller.reset.request);
+authRouter.post("/reset/request", controller.reset.request);
 
 /**
  * @swagger
- * /auth/people/reset/verify:
+ * /auth/reset/verify:
  *   post:
  *     tags:
- *      - Auth/People
+ *      - Auth
  *     summary: Verify password reset
  *     produces:
  *       - application/json
@@ -133,14 +181,14 @@ authPeopleRouter.post("/reset/request", controller.reset.request);
  *         description: Invalid OTP
  */
 
-authPeopleRouter.post("/reset/verify", controller.reset.verify);
+authRouter.post("/reset/verify", controller.reset.verify);
 
 /**
  * @swagger
- * /auth/people/reset/perform:
+ * /auth/reset/perform:
  *   post:
  *     tags:
- *      - Auth/People
+ *      - Auth
  *     summary: Perform password reset
  *     produces:
  *       - application/json
@@ -171,6 +219,6 @@ authPeopleRouter.post("/reset/verify", controller.reset.verify);
  *         description: Unauthorized
  */
 
-authPeopleRouter.post("/reset/perform", controller.reset.perform);
+authRouter.post("/reset/perform", controller.reset.perform);
 
-export default authPeopleRouter;
+export default authRouter;
