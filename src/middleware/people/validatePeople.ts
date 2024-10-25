@@ -40,10 +40,22 @@ const validatePeople = async (
       if (user.email === res.locals.body.email) {
         sendResponse(res, STATUS_BAD_REQUEST, {
           message: "Email already exists",
+          errors: [
+            {
+              field: "email",
+              message: "Email already exists",
+            }
+          ],
         });
       } else {
         sendResponse(res, STATUS_BAD_REQUEST, {
           message: "Phone number already exists",
+          errors: [
+            {
+              field: "phone",
+              message: "Phone number already exists",
+            }
+          ],
         });
       }
 
