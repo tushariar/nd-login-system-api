@@ -6,7 +6,7 @@ This is a simple login system API built with Node.js, Express, Prisma (MongoDB),
 
 1. Clone the repository
 2. Run `npm install` or `bun install`
-3. Run `npm run prisma-generate` to generate the Prisma Client
+3. Run `npx prisma generate` to generate the Prisma Client
 4. Run `npm run watch` to start watching for TypeScript changes
 5. Run `npm run dev` to start the server
 6. Run `npm run build` to build the project
