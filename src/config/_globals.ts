@@ -1,13 +1,10 @@
 const _globals = () => {
   return {
-    MODE: process.env.MODE,
-    PORT: process.env.PORT,
-
-    BASE_URL: process.env.BASE_URL,
-
     ONE_MIN: 1000 * 60,
-    ONE_HOUR: global.ONE_MIN * 60,
-    ONE_DAY: global.ONE_HOUR * 24,
+    TEN_MIN: 1000 * 60 * 10,
+    THIRTY_MIN: 1000 * 60 * 30,
+    ONE_HOUR: 1000 * 60 * 60,
+    ONE_DAY: 1000 * 60 * 24,
 
     ONE_MB: 1000000,
   };
