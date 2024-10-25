@@ -9,7 +9,7 @@ This is a simple login system API built with Node.js, Express, Prisma (MongoDB),
 3. Run `npx prisma generate` to generate the Prisma Client
 4. Run `npm run watch` to start watching for TypeScript changes
 5. Run `npm run dev` to start the server
-6. Run `npm run build` to build the project into the `dist` folder
+6. Run `npm run build` to build the project into the `dist` folder (TypeScript to JavaScript)
 7. Run `npm run start` to start the server in production mode
 
 
