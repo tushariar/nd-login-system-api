@@ -41,8 +41,10 @@ export const createPeople = async (req: Request, res: Response) => {
 
       const token = generateActionToken();
 
-      await prisma.emailVerification.create({
-        data: {
+      await prisma.emailVerification.upsert({
+        where: { email: user.email },
+        update: { token: token.hash },
+        create: {
           email: user.email,
           token: token.hash,
         },
