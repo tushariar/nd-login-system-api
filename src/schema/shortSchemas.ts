@@ -40,6 +40,11 @@ export const tokenSchema = z.object({
     .length(36, "Token must be 36 characters"),
 });
 
+export const emailVerificationSchema = z.object({
+  ...emailSchema.shape,
+  ...tokenSchema.shape,
+});
+
 export const resetPasswordSchema = z.object({
   ...emailSchema.shape,
   ...tokenSchema.shape,

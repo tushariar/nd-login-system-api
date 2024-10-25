@@ -54,6 +54,35 @@ authRouter.post("/signup", controller.signup);
 
 /**
  * @swagger
+ * /auth/signup/confirm:
+ *   post:
+ *     tags:
+ *       - Auth
+ *     summary: Confirm user email
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 example: "taahzino@gmail.com"
+ *               token:
+ *                 type: string
+ *                 example: "A1B2C3D4E5"
+ *     responses:
+ *       200:
+ *         description: Your account has been confirmed successfully
+ *       400:
+ *         description: Invalid email or token
+ */
+
+authRouter.post("/signup/confirm", controller.confirm);
+
+/**
+ * @swagger
  *
  * /auth/login:
  *   post:

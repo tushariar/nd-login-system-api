@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { Request, Response } from "express";
 import validateVerifyResetRequest from "../../middleware/auth/validateVerifyResetRequest";
-import { generateResetToken } from "../../utilities/auth";
+import { generateActionToken } from "../../utilities/auth";
 import {
   sendResponse,
   sendServerError,
@@ -14,7 +14,7 @@ const verifyPasswordReset = async (req: Request, res: Response) => {
   try {
     const { verification } = res.locals;
 
-    const token = generateResetToken();
+    const token = generateActionToken();
 
     // update the email verification record
     await prisma.resetVerification.update({

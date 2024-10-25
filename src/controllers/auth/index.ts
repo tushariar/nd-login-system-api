@@ -1,3 +1,4 @@
+import confirmPeople from "./confirmPeople";
 import createPeople from "./createPeople";
 import loginPeople from "./loginPeople";
 import logoutPeople from "./logoutPeople";
@@ -8,6 +9,7 @@ import verifyPasswordReset from "./verifyPasswordReset";
 export default {
   login: loginPeople,
   signup: createPeople,
+  confirm: confirmPeople,
   logout: logoutPeople,
   reset: {
     request: requestPasswordReset,

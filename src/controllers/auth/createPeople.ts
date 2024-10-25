@@ -2,7 +2,9 @@ import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
 import { Request, Response } from "express";
 import { v4 as uuidV4 } from "uuid";
+import { sendEmailVerification } from "../../config/_sendMail";
 import validatePeople from "../../middleware/people/validatePeople";
+import { generateActionToken } from "../../utilities/auth";
 import {
   sendResponse,
   sendServerError,
@@ -36,6 +38,17 @@ export const createPeople = async (req: Request, res: Response) => {
         [prop: string]: any;
       } = { ...user };
       delete userObj.password;
+
+      const token = generateActionToken();
+
+      await prisma.emailVerification.create({
+        data: {
+          email: user.email,
+          token: token.hash,
+        },
+      });
+
+      await sendEmailVerification(user.email, token.key);
 
       sendResponse(res, STATUS_CREATED, {
         message: "User created successfully",

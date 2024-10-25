@@ -49,3 +49,9 @@ export const sendResetPassOTP = async (to: string, otp: string) => {
     otp,
   });
 };
+
+export const sendEmailVerification = async (to: string, token: string) => {
+  await sendTemplateMail(to, process.env.EMAIL_VERIFICATION_TEMPLATE_ID as string, {
+    url: `${process.env.FRONTEND_URL}/signup/confirm/?email=${to}&token=${token}`,
+  });
+};

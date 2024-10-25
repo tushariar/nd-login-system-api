@@ -12,7 +12,7 @@ export const generateOTP = () => {
   return Math.floor(100000 + Math.random() * 900000).toString();
 };
 
-export const generateResetToken = () => {
+export const generateActionToken = () => {
   const key = uuidV4().toUpperCase();
   const hash = bcrypt.hashSync(key, 10);
 
